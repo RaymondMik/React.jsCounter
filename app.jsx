@@ -1,13 +1,3 @@
-setInterval(timer, 1000);
-function timer() {
-  var counter = 0;
-  counter++;
-  if (counter > 9) {
-    counter = -1;
-    counter++;
-  }
-}
-
 function Buttons(props) {
   return (
     <div>
