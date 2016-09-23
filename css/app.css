@@ -1,0 +1,43 @@
+body {
+  background-color: #17191A; }
+
+#app-container {
+  margin-top: 2%; }
+  #app-container .numbers-container {
+    position: relative;
+    height: 150px;
+    width: 250px;
+    line-height: 150px;
+    margin: 0 auto;
+    background-color: #515151; }
+    #app-container .numbers-container .number-container-1 {
+      position: absolute;
+      top: 4%;
+      left: 3%;
+      height: 90%;
+      width: 45%;
+      background-color: #fff;
+      border: 2px solid #000; }
+    #app-container .numbers-container .number-container-2 {
+      position: absolute;
+      top: 4%;
+      left: 50%;
+      height: 90%;
+      width: 45%;
+      background-color: #fff;
+      border: 2px solid #000; }
+    #app-container .numbers-container .number {
+      height: 100%;
+      text-align: center;
+      font-size: 9.5em;
+      font-family: 'Helvetica Neue'; }
+  #app-container .buttons-container {
+    position: relative;
+    height: 40px;
+    width: 250px;
+    background-color: #515151; }
+    #app-container .buttons-container .btn {
+      width: 50%;
+      border-radius: 0; }
+
+/*# sourceMappingURL=app.css.map */
