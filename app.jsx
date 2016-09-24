@@ -1,3 +1,8 @@
+// TO DO
+// make all components but Application stateless;
+// handle state change in Application components to perform sum and subtraction.
+
+
 function Buttons(props) {
   return (
     <div>
