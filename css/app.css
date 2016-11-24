@@ -1,43 +1,80 @@
 body {
   background-color: #17191A; }
 
-#app-container {
-  margin-top: 2%; }
-  #app-container .numbers-container {
+.counter-container {
+  margin: 2% auto;
+  width: 250px; }
+  .counter-container .numbers-container {
     position: relative;
     height: 150px;
     width: 250px;
     line-height: 150px;
     margin: 0 auto;
-    background-color: #515151; }
-    #app-container .numbers-container .number-container-1 {
-      position: absolute;
-      top: 4%;
-      left: 3%;
+    background-color: #515151;
+    padding: 10px; }
+    .counter-container .numbers-container .number-container-1 {
+      position: relative;
+      float: left;
       height: 90%;
       width: 45%;
+      margin-top: 4%;
+      margin-left: 3%;
+      padding-bottom: 3px;
       background-color: #fff;
       border: 2px solid #000; }
-    #app-container .numbers-container .number-container-2 {
-      position: absolute;
-      top: 4%;
-      left: 50%;
+    .counter-container .numbers-container .number-container-2 {
+      position: relative;
+      margin-top: 4%;
+      margin-left: 53%;
       height: 90%;
       width: 45%;
+      padding-bottom: 3px;
       background-color: #fff;
-      border: 2px solid #000; }
-    #app-container .numbers-container .number {
+      border: 2px solid #000;
+      overflow: hidden; }
+    .counter-container .numbers-container .number {
       height: 100%;
       text-align: center;
-      font-size: 9.5em;
+      font-size: 10em;
       font-family: 'Helvetica Neue'; }
-  #app-container .buttons-container {
+      .counter-container .numbers-container .number.plus-ten {
+        position: absolute;
+        right: -15%;
+        letter-spacing: 25px; }
+      .counter-container .numbers-container .number.plus-ten.current {
+        position: absolute;
+        top: -100%; }
+        .counter-container .numbers-container .number.plus-ten.current.scroll {
+          animation: scrollNumber 1s infinite; }
+      .counter-container .numbers-container .number.plus-ten.hide {
+        display: none; }
+@keyframes scrollNumber {
+  from {
+    transform: translateY(0%); }
+  to {
+    transform: translateY(100%); } }
+  .counter-container .buttons-container {
     position: relative;
-    height: 40px;
+    height: 30px;
     width: 250px;
+    padding: 10px;
     background-color: #515151; }
-    #app-container .buttons-container .btn {
-      width: 50%;
-      border-radius: 0; }
+    .counter-container .buttons-container .btn {
+      height: 30px;
+      width: 45%;
+      margin-left: 3%;
+      border-radius: 0;
+      color: #fff; }
+      .counter-container .buttons-container .btn:nth-child(2) {
+        margin-left: 5%; }
+      .counter-container .buttons-container .btn.start {
+        background-color: #5fcf80;
+        border-color: #000; }
+      .counter-container .buttons-container .btn.stop {
+        background-color: #c9302c;
+        border-color: #000; }
+      .counter-container .buttons-container .btn.reset {
+        background-color: #3079AB;
+        border-color: #000; }
 
 /*# sourceMappingURL=app.css.map */

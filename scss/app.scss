@@ -1,8 +1,9 @@
 body {
   background-color: #17191A;
 }
-#app-container {
-  margin-top: 2%;
+.counter-container {
+  margin: 2% auto;
+  width: 250px;
   .numbers-container {
     position: relative;
     height: 150px;
@@ -10,41 +11,84 @@ body {
     line-height: 150px;
     margin: 0 auto;
     background-color: #515151;
+    padding: 10px;
     .number-container-1 {
-      position: absolute;
-      top: 4%;
-      left: 3%;
+      position: relative;
+      float: left;
       height: 90%;
       width: 45%;
+      margin-top: 4%;
+      margin-left: 3%;
+      padding-bottom: 3px;
       background-color: #fff;
       border: 2px solid #000;
     }
     .number-container-2 {
-      position: absolute;
-      top: 4%;
-      left: 50%;
+      position: relative;
+      margin-top: 4%;
+      margin-left: 53%;
       height: 90%;
       width: 45%;
+      padding-bottom: 3px;
       background-color: #fff;
       border: 2px solid #000;
+      overflow: hidden;
     }
     .number {
       height: 100%;
       text-align: center;
-      font-size: 9.5em;
+      font-size: 10em;
       font-family: 'Helvetica Neue';
+      &.plus-ten {
+        position: absolute;
+        right: -15%;
+        letter-spacing: 25px;
+      }
+      &.plus-ten.current {
+        position: absolute;
+        top: -100%;
+        &.scroll {
+          animation: scrollNumber 1s infinite;
+        }
+      }
+      &.plus-ten.hide {
+        display: none;
+      }
     }
   }
-
+  @keyframes scrollNumber {
+    from {transform: translateY(0%);}
+    to   {transform: translateY(100%);}
+  }
   .buttons-container {
     position: relative;
-    height: 40px;
+    height: 30px;
     width: 250px;
+    padding: 10px;
     background-color: #515151;
     .btn {
-        width: 50%;
+        height: 30px;
+        width: 45%;
+        margin-left: 3%;
         border-radius: 0;
+        color: #fff;
+        &:nth-child(2) {
+          margin-left: 5%
+        }
+        &.start {
+          background-color: #5fcf80;
+          border-color: #000;
+        }
+        &.stop {
+          background-color: #c9302c;
+          border-color: #000;
+        }
+        &.reset {
+          background-color: #3079AB;
+          border-color: #000;
+        }
       }
   }
+  
 }
 
