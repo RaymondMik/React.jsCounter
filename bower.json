@@ -19,7 +19,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7",
     "react": "^15.3.2",
     "babel": "^5.8.38",
   }
