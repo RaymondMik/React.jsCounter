@@ -1,5 +1,5 @@
-# ReactCounter
+# React.jsCounter
 
-A simple Counter application I am developing with React.js./Work in progress :-)
+A simple React.js stateful component providing a counter ticking from 0 to 60 seconds.
 
-You can see how it will look like when ready on Codepen <a href="http://codepen.io/RamonMO/pen/LREzPP">here</a>.
+You can see it live on Codepen <a href="http://codepen.io/RamonMO/pen/LREzPP">here</a>.
