@@ -35,22 +35,20 @@ body {
             font-size: 10em;
             font-family: 'Helvetica Neue';
             margin-left: 10%;
-            transform: translateY(-100%);
+            transform: translateY(-102%);
             &.current {
                 letter-spacing: 25px;
             }
             &.previous {
                 letter-spacing: 25px;
             }
-            &.plus-ten.hide {
-                display: none;
+            &.scroll {
+                transform: translateY(0%);
+                transition: 0.3s;
             }
         }
     }
-    .scroll {
-        transform: translateY(0%)!important;
-        transition: 0.3s;
-    }
+    
     .buttons-container {
         position: relative;
         height: 30px;

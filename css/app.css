@@ -32,16 +32,14 @@ body {
       font-size: 10em;
       font-family: 'Helvetica Neue';
       margin-left: 10%;
-      transform: translateY(-100%); }
+      transform: translateY(-102%); }
       .counter-container .numbers-container .number.current {
         letter-spacing: 25px; }
       .counter-container .numbers-container .number.previous {
         letter-spacing: 25px; }
-      .counter-container .numbers-container .number.plus-ten.hide {
-        display: none; }
-  .counter-container .scroll {
-    transform: translateY(0%) !important;
-    transition: 0.3s; }
+      .counter-container .numbers-container .number.scroll {
+        transform: translateY(0%);
+        transition: 0.3s; }
   .counter-container .buttons-container {
     position: relative;
     height: 30px;
