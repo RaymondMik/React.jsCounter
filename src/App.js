@@ -1,3 +1,7 @@
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
 var ReactCounter = React.createClass({
     currentFirstDigit: 0,
     previousFirstDigit: 0,
@@ -137,4 +141,6 @@ var ReactCounter = React.createClass({
         
 })
 
-ReactDOM.render( <ReactCounter />, document.getElementById('app-container') );
+// ReactDOM.render( <ReactCounter />, document.getElementById('app-container') );
+
+export default ReactCounter;
