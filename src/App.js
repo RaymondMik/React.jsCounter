@@ -1,133 +1,140 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 var ReactCounter = React.createClass({
-    currentFirstDigit: 0,
-    previousFirstDigit: 0,
-    previousSecondDigit: 0,  
-    scrollFirstDigit: false,
-    scrollSecondDigit: false,
-
-    // Set initial state with counter not running
-    getInitialState: function() {
-        return {
-            running: false,
-            currentSecondDigit: 0,
-        }
+    
+    options: {
+      hours: false,
+      minutes: false,
+      seconds: true,
+      interval: 1000,   // update interval - must be bigger than animation time
+      animationTime: 300 // animation time of your transition - could be calculated in react instead of matcing transition in css class
     },
-      
-    // Called as soon as Counter is added to the DOM
-    componentDidMount: function() {
-        this.interval = setInterval(this.timeCounter, 1000);
+
+    //Set initial state with counter not running
+    getInitialState: function() {
+         return {
+            running: false,
+            scroll: false,
+            count: -1,
+            countFirst: -1,
+            scrollFirst: false,
+        }
     },
 
     // Called as soon as Counter is removed from the DOM
     componentWillUnmount: function() {
-        clearInterval(this.interval);
+        this.resetCounter();
     },
 
     // Called as soon as Counter is updated
     componentDidUpdate: function() {
-        if (this.previousSecondDigit != this.state.currentSecondDigit) {
-            // trigger scroll class
-            this.scrollSecondDigit = true;
-            this.previousSecondDigit = this.state.currentSecondDigit;
-        }
-        
-        if (this.previousSecondDigit == this.state.currentSecondDigit) {
-            // remove scroll class
-            this.scrollSecondDigit = false;
-        }
-        
-        if (this.previousFirstDigit != this.currentFirstDigit) {
-            // trigger class
-            this.scrollFirstDigit = true;
-            this.previousFirstDigit = this.currentFirstDigit;
-        }
-        
-        if (this.previousFirstDigit == this.currentFirstDigit) {
-            // remove scroll class
-            this.scrollFirstDigit = false;
-        }
-        
-        if (this.state.currentSecondDigit == 10) {
-            this.currentFirstDigit++;
-        }
-        
-        if (this.state.currentSecondDigit == 10) {
-            this.setState({
-                currentSecondDigit: 0,
-            });
-            this.previousSecondDigit = 0;
-        }
-
-        // Stop and reset counter when it gets to 60
-        if (this.currentFirstDigit == 6) {
-            if (this.state.currentSecondDigit == 0) {
-                this.setState({ 
-                    running: false,
-                    currentSecondDigit: 0
-                });
-                this.currentFirstDigit = 0;
-                this.previousFirstDigit = 0;
-                this.previousSecondDigit = 0;
+        var self = this;
+          setTimeout(function(){
+            if (self.state.scroll) {
+              self.setState({
+                  scroll: false,
+                  scrollFirst: false,
+              });
             }
-        }
-    },
 
-    timeCounter: function() {
-        if (this.state.running) {
+          }, this.options.animationTime);
+
+        if (this.state.count === 10) {
             this.setState({
-                currentSecondDigit: this.state.currentSecondDigit + 1,  
-            });
+                count: 0,
+            })
         }
+
+        if (this.state.countFirst === 5) {
+            clearInterval(this.interval);
+            this.setState({
+                count: -1,
+                countFirst: -1,
+                scroll: false,
+                scrollFirst: false,
+                running: false,
+            })
+        }
+
     },
 
     startCounter: function() {
-        this.setState({ 
-          running: true,
-          previousTime: Date.now(),
-        });
+        var self = this;
+            this.interval = setInterval(function() {
+            self.setState({
+              scroll: true,
+              running: true,
+              count: self.state.count + 1
+            });
+
+            if (self.state.count === 9) {
+                self.setState({
+                    countFirst: self.state.countFirst + 1,
+                    scrollFirst: true,
+                })
+            }
+
+        }, this.options.interval);
     },
 
     stopCounter: function() {
         this.setState({ 
-            running: false
+            running: false,
+            scroll: false,
         });
     },
 
     resetCounter: function() {
+        clearInterval(this.interval);
         this.setState({
-          currentSecondDigit: 0,
-          previousTime: Date.now(),
+            running: false,
+            scroll: false,
+            count: -1
         });
-        this.currentFirstDigit = 0;
-        this.previousFirstDigit = 0;
-        this.previousSecondDigit = 0;
     },
 
     render: function() {
-        var scrollFirstDigit = this.scrollFirstDigit === true ? 'scroll' : '';
-        var scrollSecondDigit = this.scrollSecondDigit === true ? 'scroll' : '';
+
+        console.log(this.state.countFirst);
+
+        var countCurrent = this.state.count;
+        var countIncremented = this.state.count + 1;
+
+        if ( countCurrent === 9 ) {
+            countIncremented = 0;
+        }
+
+        var currentDigit = (this.state.scroll) ? countIncremented : countCurrent;
+        var prevDigit = (this.state.scroll) ? countCurrent : countIncremented;
+
+        var countCurrentFirst = this.state.countFirst;
+        var countIncrementedFirst = this.state.countFirst + 1;
+
+        var currentDigitFirst = (this.state.scrollFirst) ? countIncrementedFirst : countCurrentFirst;
+        var prevDigitFirst = (this.state.scrollFirst) ? countCurrentFirst : countIncrementedFirst;
+
+        var scrollClass = this.state.scroll && currentDigit !== prevDigit ? 'scroll' : '';
+        var scrollFirst = this.state.scrollFirst && currentDigitFirst !== prevDigitFirst ? 'scroll' : '';
+    
 
         return (
             <div className="counter-container">
                 <div className="numbers-container">
                     <div className="number-container one">
-                        <div className={"number current " + scrollFirstDigit}>
-                            {this.currentFirstDigit}
+                        <div className={"number current " + scrollFirst}>
+                            {currentDigitFirst}
                         </div>
-                        <div className={"number previous " + scrollFirstDigit}>
-                            {this.previousFirstDigit}
+                        <div className={"number previous " + scrollFirst}>
+                            {prevDigitFirst}
                         </div>
                     </div>
                     <div className="number-container two">
-                        <div className={"number current " + scrollSecondDigit}>
-                            {this.state.currentSecondDigit}
+                        <div className={"number current " + scrollClass}>
+                            {currentDigit}
                         </div>
-                        <div className={"number previous " + scrollSecondDigit}>
-                            {this.previousSecondDigit}
+                        <div className={"number previous " + scrollClass}>
+                            {prevDigit}
                         </div>
                     </div>
                 </div>
@@ -144,3 +151,5 @@ var ReactCounter = React.createClass({
 // ReactDOM.render( <ReactCounter />, document.getElementById('app-container') );
 
 export default ReactCounter;
+
+
